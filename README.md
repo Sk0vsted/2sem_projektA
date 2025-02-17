@@ -1,0 +1,2 @@
+# 2sem_projektA
+ 
