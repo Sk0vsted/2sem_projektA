@@ -12,11 +12,11 @@ const saltRounds = 10;
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-/* const loginLimit = rateLimit({
+const loginLimit = rateLimit({
     windowMs: 15 * 60 * 1000,
-    max: 3,
+    max: 10,
     message: "Too many login attempts, try again later"
-}); */
+});
 
 const db = new sqlite3('users.db');
 
@@ -71,20 +71,15 @@ app.post('/api/login', async (req, res) => {
         const user = stmt.get(email);
 
         if (!user) {
-            return res.status(404).json({ error: "Invalid credentials" });
+            return res.status(403).json({ error: "Invalid credentials" });
         }
 
-        bcryptjs.compare(password, user.password, (err, result) => {
-            if (err) {
-                throw err;
-            }
-
-            if (result) {
-                res.status(200).json({ message: "✅ Login successful" });
-            } else {
-                res.status(401).json({ error: "❌ Invalid password" });
-            }
-        });
+        const match = await bcryptjs.compare(password, user.password);
+        if (match) {
+            return res.status(200).json({ message: "✅ Login successful" });
+        } else {
+            return res.status(401).json({ error: "❌ Invalid password" });
+        }
     } catch (error) {
         console.error("❌ Login Error:", error);
         res.status(500).json({ error: "Server error" });
