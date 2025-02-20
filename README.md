@@ -5,6 +5,7 @@ Implementér et system hvor serveren forhindrer SQL-injektioner i brugerforespø
 
 ### Opsæt database fil:
 ```
+sqlite3 users.db
 sqlite> CREATE TABLE users (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     email TEXT UNIQUE NOT NULL,
