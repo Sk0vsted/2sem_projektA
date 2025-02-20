@@ -1,13 +1,13 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import Login from './components/Login.vue';  // Sørg for at stien er korrekt
+import Login from './components/Login.vue';
 import Register from './components/Register.vue';
 import Home from './components/Home.vue';
 
 const routes = [
-    { path: '/', redirect: '/home' },  // Omdirigerer til login som standard
-    { path: '/login', component: Login, meta: { title: 'Login' } },
-    { path: '/register', component: Register, meta: { title: 'Register' }},
-    { path: '/home', component: Home, meta: { title: 'Home' }}
+    { path: '/', redirect: '/login', meta: { title: '2. SEM | Excercise 2 - Login' } },
+    { path: '/login', component: Login, meta: { title: '2. SEM | Excercise 2 - Login' } },
+    { path: '/register', component: Register, meta: { title: '2. SEM | Excercise 2 - Register' } },
+    { path: '/home', component: Home, meta: { title: '2. SEM | Excercise 2 - Home' } }
 ];
 
 const router = createRouter({
