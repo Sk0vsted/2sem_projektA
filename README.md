@@ -3,6 +3,15 @@
 Opgaven lyder på:
 Implementér et system hvor serveren forhindrer SQL-injektioner i brugerforespørgsler via en browser. Der skal faktisk kunne foretages forespørgsler i flere forskellige felter, så der må mindst foreligge en lille testdatabase.
 
+### Opsæt database fil:
+```
+sqlite> CREATE TABLE users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    email TEXT UNIQUE NOT NULL,
+    password TEXT NOT NULL
+);
+```
+
 ## Beskrivelse:
 **Teknologier**
 - Node.js, Express.js, SQLite, bcrypt.js, CORS, Vue.js
